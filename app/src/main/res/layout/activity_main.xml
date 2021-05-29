@@ -54,7 +54,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_box"
                     android:fontFamily="@font/open_sans_regular"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:text="@={login.email}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +96,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_box"
                     android:fontFamily="@font/open_sans_regular"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@={login.password" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

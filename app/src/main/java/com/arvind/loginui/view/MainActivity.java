@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean validateUserpassword() {
         String password = binding.edPasswordLogin.getText().toString().trim();
-        if (password.isEmpty() && !isValidPassword(password)) {
+        if (password.isEmpty() && isValidPassword(password)) {
             binding.tverrorPasswordViewlogin.setError(binding.tverrorPasswordViewlogin.getError());
             binding.tverrorPasswordViewlogin.setVisibility(View.VISIBLE);
             return false;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean validateUseemail() {
         String email = binding.edEmailLogin.getText().toString().trim();
-        if (email.isEmpty() || !isValidEmailaddress(email)) {
+        if (email.isEmpty() || isValidEmailaddress(email) && validmobilenumber(email)) {
             binding.tverrorEmailViewlogin.setError(binding.tverrorEmailViewlogin.getError());
             binding.tverrorEmailViewlogin.setVisibility(View.VISIBLE);
             return false;
@@ -111,6 +111,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private boolean validmobilenumber(String email) {
+        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+
+        Matcher m = p.matcher(email);
+        return (m.find() && m.group().equals(email));
     }
 
     private boolean isValidEmailaddress(String email) {

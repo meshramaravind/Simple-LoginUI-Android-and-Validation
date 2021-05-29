@@ -60,7 +60,7 @@ public class LoginViewModel extends ViewModel {
 
     private void getLogin() {
         if (AppNetworkStatus.isNetworkConnected(context)) {
-            getIsLoading().setValue(0);
+            getIsLoading().setValue(0);//visible
             //call your api
         } else {
             Toast.makeText(context, "No Internet connection.!", Toast.LENGTH_LONG).show();
@@ -69,7 +69,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     private boolean validateUseremail() {
-        if (!user.isValidEmail()) {
+        if (!user.isValidEmail() && !user.isValidMobileNumber()) {
             textViewerroremail.setError(textViewerroremail.getError());
             textViewerroremail.setVisibility(View.VISIBLE);
             return false;

@@ -44,10 +44,35 @@ public class User {
     }
 
     public boolean isValidEmail() {
-        if (this.email != null && !TextUtils.isEmpty(email) && !isValidedEmail(email)) {
+        if (this.email != null && !TextUtils.isEmpty(email) && isValidedEmail(email)) {
             return true;
         }
 
+        return false;
+    }
+
+
+    public boolean isValidMobileNumber() {
+
+        if (this.email != null && !TextUtils.isEmpty(email) && isValidedMobileNumber(email)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isValidedMobileNumber(String emailORMobile) {
+
+        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+
+        Matcher m = p.matcher(emailORMobile);
+        return (m.find() && m.group().equals(emailORMobile));
+    }
+
+
+    public boolean isValidPassword() {
+        if (this.password != null && !TextUtils.isEmpty(password) && isValidetPassword(password)) {
+            return true;
+        }
         return false;
     }
 
@@ -61,16 +86,11 @@ public class User {
         if (email == null)
             return false;
         return pat.matcher(email).matches();
+
     }
 
-    public boolean isValidPassword() {
-        if (this.password != null && !TextUtils.isEmpty(password) && !isValidetPassword(password)) {
-            return true;
-        }
-        return false;
-    }
+    public static boolean isValidetPassword(final String password) {
 
-    private static boolean isValidetPassword(String password) {
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
                 + "(?=.*[@#$%^&+=])"
@@ -82,5 +102,7 @@ public class User {
         }
         Matcher m = p.matcher(password);
         return m.matches();
+
     }
+
 }
